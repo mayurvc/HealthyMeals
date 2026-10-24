@@ -1,0 +1,103 @@
+<div class="container mt-5 d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card p-4 shadow-lg" style="width: 28rem; border-radius: 1rem;">
+      <h2 class="text-center mb-4">Add New Meal</h2>
+  
+      <form (ngSubmit)="onAddMeal()" #mealForm="ngForm" novalidate>
+        <!-- Meal Name Field -->
+        <div class="mb-3">
+          <label for="name" class="form-label">Meal Name:</label>
+          <input
+            type="text"
+            id="name"
+            [(ngModel)]="meal.name"
+            name="name"
+            required
+            #nameInput="ngModel"
+            class="form-control"
+            placeholder="Enter meal name"
+          />
+          <div *ngIf="nameInput.invalid && nameInput.touched" class="text-danger mt-1">
+            <small>Meal name is required</small>
+          </div>
+        </div>
+  
+        <!-- Description Field -->
+        <div class="mb-3">
+          <label for="description" class="form-label">Description:</label>
+          <textarea
+            id="description"
+            [(ngModel)]="meal.description"
+            name="description"
+            required
+            #descriptionInput="ngModel"
+            class="form-control"
+            placeholder="Enter meal description"
+          ></textarea>
+          <div *ngIf="descriptionInput.invalid && descriptionInput.touched" class="text-danger mt-1">
+            <small>Description is required</small>
+          </div>
+        </div>
+  
+        <!-- Quantity Field -->
+        <div class="mb-3">
+          <label for="quantity" class="form-label">Quantity:</label>
+          <input
+            type="number"
+            id="quantity"
+            [(ngModel)]="meal.quantity"
+            name="quantity"
+            required
+            #quantityInput="ngModel"
+            class="form-control"
+            placeholder="Enter meal quantity"
+            min="1"
+          />
+          <div *ngIf="quantityInput.invalid && quantityInput.touched" class="text-danger mt-1">
+            <small>Quantity is required</small>
+          </div>
+        </div>
+  
+        <!-- Price Field -->
+        <div class="mb-3">
+          <label for="price" class="form-label">Price:</label>
+          <input
+            type="number"
+            id="price"
+            [(ngModel)]="meal.price"
+            name="price"
+            required
+            #priceInput="ngModel"
+            class="form-control"
+            placeholder="Enter meal price"
+          />
+          <div *ngIf="priceInput.invalid && priceInput.touched" class="text-danger mt-1">
+            <small>Price is required</small>
+          </div>
+        </div>
+  
+        <!-- Category Field -->
+        <div class="mb-3">
+          <label for="category" class="form-label">Category:</label>
+          <input
+            type="text"
+            id="category"
+            [(ngModel)]="meal.category"
+            name="category"
+            required
+            #categoryInput="ngModel"
+            class="form-control"
+            placeholder="Enter meal category"
+          />
+          <div *ngIf="categoryInput.invalid && categoryInput.touched" class="text-danger mt-1">
+            <small>Category is required</small>
+          </div>
+        </div>
+  
+        <!-- Add Meal Button -->
+        <button type="submit" [disabled]="mealForm.invalid" class="btn btn-primary w-100">
+          Add Meal
+        </button>
+      </form>
+    </div>
+  </div>
+  

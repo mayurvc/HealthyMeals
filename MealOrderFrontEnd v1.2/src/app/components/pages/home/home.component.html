@@ -1,0 +1,73 @@
+<app-search></app-search>
+<app-tags></app-tags>
+
+<app-not-found 
+  [visible]="!meals || !meals.length" 
+  resetLinkText="Reset Search">
+</app-not-found>
+
+<ul>
+  <li *ngFor="let meal of meals">
+    <a routerLink="/food/{{ meal.id }}">
+      <img [src]="meal.imageUrl" [alt]="meal.name" />
+
+      <div class="content">
+        <div class="name">{{ meal.name }}</div>
+        <div class="description">{{ meal.description }}</div>
+
+        <span class="favorite {{ meal.favorite ? '' : 'not' }}">❤</span>
+
+        <div class="stars">
+          <star-rating [value]="meal.stars || 0" 
+                       [totalstars]="5" 
+                       checkedcolor="red" 
+                       uncheckedcolor="black" 
+                       size="22px" 
+                       [readonly]="true">
+          </star-rating>
+        </div>
+
+        <div class="product-item-footer">
+          <div class="origins">
+            <span>{{ meal.mealType }}</span>
+          </div>
+          <div class="cook-time">
+            <span>🕒</span> 30 mins
+          </div>
+        </div>
+
+        <div class="price">
+          <span>{{ meal.price | currency:'INR':'symbol':'1.0-0' }}</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Rate Button -->
+    <button class="btn btn-primary mt-2" (click)="openRatingModal(meal)">
+      Rate this meal
+    </button>
+  </li>
+</ul>
+
+<!-- Rating Modal -->
+<div class="modal" tabindex="-1" [ngClass]="{'show': isModalOpen}" [style.display]="isModalOpen ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Rate {{ selectedMeal?.name }}</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <label for="rating">Rating (1-5):</label>
+        <input type="number" [(ngModel)]="userRating" min="1" max="5" class="form-control" />
+
+        <label for="review" class="mt-2">Review:</label>
+        <textarea [(ngModel)]="userReview" rows="3" class="form-control"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="submitRating()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>

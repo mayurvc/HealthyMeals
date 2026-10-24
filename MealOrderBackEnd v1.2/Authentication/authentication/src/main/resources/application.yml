@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8100/eureka/
+
+spring:
+  application:
+    name: gateway-service
+
+  cloud:
+    gateway:
+      mvc:
+        routes:
+        - id: service-1
+          uri: lb://SERVICE-1
+          predicates:
+            - Path=/service1/**
+        - id: mealorders
+          uri: lb://MEALORDERS
+          predicates:
+            - Path=/api/mealOrder/**
+        - id: paymentNotification
+          uri: lb://PAYMENTNOTIFICATION
+          predicates:
+            - Path=/api/paymentsNotifications/**
+        - id: ReviewRating
+          uri: lb://REVIEWRATING
+          predicates:
+            - Path=/api/reviews/**
+        

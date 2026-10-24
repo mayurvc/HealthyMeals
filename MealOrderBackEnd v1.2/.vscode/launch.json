@@ -1,0 +1,54 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-EurekaServerApplication<eureka-server>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.eureka_server.EurekaServerApplication",
+            "projectName": "eureka-server",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AuthenticationApplication<authentication>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.wipro.authentication.AuthenticationApplication",
+            "projectName": "authentication",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MealordersApplication<mealorders>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.wipro.mealorders.MealordersApplication",
+            "projectName": "mealorders",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PaymentNotificationApplication<PaymentNotification>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.wipro.PaymentNotification.PaymentNotificationApplication",
+            "projectName": "PaymentNotification",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ReviewRatingDashboardMicroserviceApplication<ReviewRatingDashboard>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.wipro.ReviewRatingDashboard.ReviewRatingDashboardMicroserviceApplication",
+            "projectName": "ReviewRatingDashboard",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

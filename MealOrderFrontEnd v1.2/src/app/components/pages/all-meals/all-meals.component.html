@@ -1,0 +1,27 @@
+<div class="container">
+    <h3 class="text-center">All Meals</h3>
+    <input type="text" [(ngModel)]="searchTerm" (input)="filterMeals()" placeholder="Search meals..." class="form-control mb-3">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let meal of filteredMeals; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ meal.name }}</td>
+                <td>{{ meal.description }}</td>
+                <td>{{ meal.price | currency }}</td>
+                <td>{{ meal.category }}</td>
+                <td>{{ meal.quantity }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

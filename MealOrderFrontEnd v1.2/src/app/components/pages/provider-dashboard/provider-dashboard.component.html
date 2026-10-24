@@ -1,0 +1,52 @@
+<div class="container mt-5">
+    <h2 class="text-center">Provider Dashboard</h2>
+    <p class="text-center">List of all available meals</p>
+
+    <!-- Search Input for Filtering Meals -->
+    <div class="text-end mb-3">
+        <input type="text" [(ngModel)]="searchTerm" (input)="updateMeals()" placeholder="Search meals..." class="form-control" style="width: 300px; display: inline-block;">
+        <button class="btn btn-primary ms-2" (click)="toggleSortOrder()">
+            Sort by Name ({{ sortOrder === 'asc' ? 'Descending' : 'Ascending' }})
+        </button>
+        <button class="btn btn-success ms-2" (click)="addMeal()">Add New Meal</button>
+    </div>
+
+    <div *ngIf="filteredMeals && filteredMeals.length > 0; else noMeals">
+      <table class="table table-striped table-bordered mt-4">
+        <thead class="table-dark">
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let meal of filteredMeals; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ meal.name }}</td>
+            <td>{{ meal.description }}</td>
+            <td>{{ meal.price | currency }}</td>
+            <td>{{ meal.quantity }}</td>
+            <td>{{ meal.category }}</td>
+            <td>
+              <button class="btn btn-warning btn-sm" (click)="editMeal(meal)">Edit</button>
+            </td>
+            <td>
+                <button class="btn btn-danger btn-sm" (click)="deleteMeal(meal.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #noMeals>
+      <div class="alert alert-warning text-center mt-4">
+        No meals found in the system.
+      </div>
+    </ng-template>
+</div>

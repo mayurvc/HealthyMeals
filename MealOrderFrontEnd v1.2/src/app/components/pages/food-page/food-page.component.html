@@ -1,0 +1,82 @@
+<app-not-found
+  [visible]="!meal.id"
+  notFoundMessage="meal Not Found"
+  resetLinkText="Back To Homepage">
+</app-not-found>
+<div class="container mt-3">
+  <div *ngIf="isAlertVisible" class="alert alert-danger alert-dismissible fade show mt-3 d-flex justify-content-center" role="alert">
+      <a routerLink="/login" class="text-black me-2"><strong>Login!</strong></a>
+      Please login to continue
+  </div>
+</div>
+
+
+<div *ngIf="meal.id" class="container">
+  <img [src]="meal.imageUrl" [alt]="meal.name"/>
+
+  <div class="details">
+    <div class="header">
+      <span class="name">
+        {{meal.name}}
+      </span>
+      <span class="favorite {{meal.favorite? '': 'not'}}">❤</span>
+    </div>
+    <div class="rating">
+      <star-rating
+      [value]="meal.stars"
+      [totalstars]="5"
+      checkedcolor="red"
+      uncheckedcolor="black"
+      size="25px"
+      [readonly]="true">
+    </star-rating>
+    </div>
+
+    <div class="origins">
+      <span *ngFor="let origin of meal.origins">
+        {{origin}}
+      </span>
+    </div>
+
+    <div class="tags">
+      <a *ngFor="let tag of meal.tags" routerLink="/tag/{{tag}}">
+        {{tag}}
+      </a>
+    </div>
+
+    <div class="cook-time">
+      <span>
+        Time to cook about <strong>{{meal.cookTime}}</strong> minutes
+      </span>
+    </div>
+
+    <div class="price">
+      <span>
+        {{meal.price | currency:'INR':'symbol':'1.0-0'}}
+      </span>
+    </div>
+
+    <button (click)="addToCart()">Add To Cart</button>
+
+  </div>
+</div>
+
+<div class=" container reviews mt-4">
+  <h3>Reviews</h3>
+  <div *ngIf="meal.reviews && meal.reviews.length > 0; else noReviews">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let review of meal.reviews">
+        <div>
+          <strong>{{ review.userId }}</strong> - <span>{{ review.rating }} / 5</span>
+        </div>
+        <p>{{ review.comments }}</p>
+      </li>
+    </ul>
+  </div>
+
+  <ng-template #noReviews>
+    <div class="alert alert-info">
+      No reviews available for this meal.
+    </div>
+  </ng-template>
+</div>

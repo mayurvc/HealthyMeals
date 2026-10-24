@@ -1,0 +1,28 @@
+<header>
+  <div class="container">
+    <a routerLink="/" class="logo">Healthy Meal</a>
+    <nav>
+      <ul>
+        <li>
+          <a *ngIf="isAdmin" routerLink="/admin-dashboard">Admin Dashboard</a>
+          <a *ngIf="isProvider" routerLink="/provider-dashboard">Provider Dashboard</a>
+        </li>
+        <li class="menu-container">
+          <a routerLink="/dashboard">{{user}}</a>
+          <div class="menu">
+            <a *ngIf="isAdmin" routerLink="/signup">SignUp User</a>
+            <a routerLink="/profile">Profile</a>
+            <a *ngIf="isUser" routerLink="/orders">Orders</a>
+            <a *ngIf="!isLoggedIn" routerLink="/login">Login</a>
+            <a (click)="logout()">Logout</a>
+          </div>
+        </li>
+        <li>
+          <a routerLink="/cart-page">
+            Cart <span>{{cartQuantity}}</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

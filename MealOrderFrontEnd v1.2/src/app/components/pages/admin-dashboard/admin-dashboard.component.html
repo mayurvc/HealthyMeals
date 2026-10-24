@@ -1,0 +1,35 @@
+<div class="container mt-5">
+    <h2 class="text-center">Admin Dashboard</h2>
+    <p class="text-center">Manage Meals and Users</p>
+
+    <!-- Tabs for switching between components -->
+    <ul class="nav nav-tabs mb-4">
+        <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'meals'" (click)="setActiveTab('meals')">
+                All Meals
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'users'" (click)="setActiveTab('users')">
+                All Users
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'reviews'" (click)="setActiveTab('reviews')">
+                All Review
+            </a>
+        </li>
+    </ul>
+
+    <div *ngIf="activeTab === 'meals'">
+        <app-all-meals></app-all-meals>
+    </div>
+
+    <div *ngIf="activeTab === 'users'">
+        <app-all-users></app-all-users>
+    </div>
+
+    <div *ngIf="activeTab === 'reviews'">
+        <app-admin-reviews></app-admin-reviews>
+    </div>
+</div>
